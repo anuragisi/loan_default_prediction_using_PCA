@@ -2,7 +2,7 @@
 
 Hi everyone, I'm Anurag from the Indian Statistical Institute. Today, I'll be walking you through a series of code focusing on Principal Component Analysis (PCA) using a notebook from a Kaggle competition hosted by Imperial College London in 2014.
 
-<video src='https://www.youtube.com/watch?v=gjHHIFlU2E8' width=180>
+<video src="https://www.youtube.com/watch?v=gjHHIFlU2E8"></video>
 
 <h3>Aim:</h3>
 <div>The competition aimed to predict whether a loan would default and the potential loss if it did. Unlike traditional methods that categorize borrowers as good or bad, this competition sought to anticipate both the default likelihood and the severity of losses. Essentially, it aimed to bridge traditional banking methods with asset management strategies.</div>
