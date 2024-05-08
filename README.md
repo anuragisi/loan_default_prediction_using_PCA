@@ -185,3 +185,12 @@ pca = PCA()
 <samp>
   <img width="673" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/f98e07cd-64b9-4b56-8c65-799a566e3fff">
 </samp>
+<pre>
+plt.plot(np.cumsum(pca.explained_variance_ratio_))
+plt.xlabel('number of components')
+plt.ylabel('cumulative explained variance');
+</pre>
+<samp>
+  <img width="387" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/63f7bcf9-093b-4ca7-9d01-8b91382296cb">
+</samp>
+<pre>np.cumsum(pca.explained_variance_ratio_)[200]</pre>
