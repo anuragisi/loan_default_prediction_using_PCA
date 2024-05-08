@@ -18,3 +18,8 @@ Video Tutorial:
 In essence, the loan default dataset offers both practical relevance and intellectual challenge, making it a compelling choice for analysis and exploration.
 
 </div>
+<h3>Importing Libraries</h3>
+<samp>import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt</samp>
