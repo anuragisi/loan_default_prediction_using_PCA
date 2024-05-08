@@ -1,10 +1,7 @@
 # loan_default_prediction_using_PCA
 
 Hi everyone, I'm Anurag from the Indian Statistical Institute. Today, I'll be walking you through a series of code focusing on Principal Component Analysis (PCA) using a notebook from a Kaggle competition hosted by Imperial College London in 2014.
-
-[![Now in Android: 55]
-(https://i.ytimg.com/vi/Hc79sDi3f0U/maxresdefault.jpg)] 
-([[https://www.youtube.com/watch?v=gjHHIFlU2E8]](https://www.youtube.com/watch?v=gjHHIFlU2E8) "Now in Android: 55")    
+   
 [<img width="660" alt="Screenshot 2024-05-08 at 3 42 27 PM" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/075d6d83-f523-4533-98c7-99a4c43f404c">](https://www.youtube.com/watch?v=gjHHIFlU2E8 "Play on YouTube")
 
 <h3>Aim:</h3>
