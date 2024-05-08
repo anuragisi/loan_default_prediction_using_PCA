@@ -2,8 +2,6 @@
 
 Hi everyone, I'm Anurag from the Indian Statistical Institute. Today, I'll be walking you through a series of code focusing on Principal Component Analysis (PCA) using a notebook from a Kaggle competition hosted by Imperial College London in 2014.
 
-<iframe width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
-
 [<img src="https://i.ytimg.com/vi/Hc79sDi3f0U/maxresdefault.jpg" width="50%">]([https://www.youtube.com/watch?v=Hc79sDi3f0U](https://www.youtube.com/embed/gjHHIFlU2E8?si=K0PPEETLV5IWTdIh) "Now in Android: 55")
 
 <h3>Aim:</h3>
