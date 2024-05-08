@@ -98,3 +98,90 @@ test_data.drop('id', axis=1, inplace = True)
 <samp>
   <img width="891" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/015c27d7-68fb-4de4-975b-3b748eee3e11">
 </samp>
+<h3>Correlations</h3>
+<h4>To look at those features having very high correlations among themselves.</h4>
+<pre>
+  correlations = train_data.iloc[:,1:752].corr()
+correlations.head())
+</pre>
+<samp>
+  <img width="1122" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/46838225-1d32-46a1-9894-0c0fbdf5784c">
+</samp>
+<h3>Splitting Train_dataset into (Train:Test)</h3>
+<pre>
+x = train_data.iloc[:,1:751].copy()
+y = train_data.iloc[:,751].copy()
+y.value_counts()
+</pre>
+<samp>
+  <img width="379" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/17e91793-2310-455e-9862-28b4ef76147f">
+</samp>
+<h3>We first convert y into binary</h3>
+<pre>
+y[y>0] = 1
+y.value_counts()
+</pre>
+<samp>
+  <img width="274" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/6d5ad88a-32c9-4a20-9ef5-914d8e032f72">
+</samp>
+<pre>
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(x, y, stratify = y, random_state=0)
+</pre>
+<pre>
+  [X_train.shape, X_test.shape, y_train.shape, y_test.shape]
+</pre>
+<samp>
+  <img width="792" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/e4a287f8-65e5-4e5b-876b-8b7b94ed5b69">
+</samp>
+<h3>Missing Value Treatment</h3>
+<pre>
+X_train = X_train.fillna(X_train.mean())
+X_test = X_test.fillna(X_train.mean())
+</pre>
+<pre>
+test_data = test_data.fillna(X_train.mean())
+[X_train.isnull().sum().sum(), X_test.isnull().sum().sum(), test_data.isnull().sum().sum()]
+</pre>
+<samp>
+  <img width="820" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/2f02633f-2add-4dda-9d02-9c74836dee31">
+</samp>
+<h3>Standardization of Variables</h3>
+<h4>As we know, PCA is effected by scale, so, we need to scale all the features into standard units (mean=0,variabce=1).</h4>
+<pre>
+from sklearn.preprocessing import StandardScaler
+scalar= StandardScaler()
+scalar.fit(X_train)
+X_train = scalar.transform(X_train)
+X_test = scalar.transform(X_test)
+</pre>
+<pre>
+  X_t = scalar.transform(test_data)
+</pre>
+<h3>PCA</h3>
+<pre>
+from sklearn.decomposition import PCA
+pca = PCA()
+</pre>
+<pre>pca.fit(X_train)</pre>
+<samp>
+  <img width="404" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/78f26d74-8268-427b-a66c-838577276084">
+</samp>
+<pre>
+  pca.components_
+</pre>
+<samp>
+  <img width="587" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/f61d740a-a64b-4520-a4ad-87dc11d39bb4">
+</samp>
+<pre>
+  pca.explained_variance_
+</pre>
+<samp>
+  <img width="673" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/d97b2edf-20af-480d-ba62-228402ef3e70">
+</samp>
+<pre>
+  pca.get_covariance()
+</pre>
+<samp>
+  <img width="673" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/f98e07cd-64b9-4b56-8c65-799a566e3fff">
+</samp>
