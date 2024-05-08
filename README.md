@@ -58,3 +58,43 @@ import matplotlib.pyplot as plt</pre>
 <samp>
   <img width="507" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/1ff46dbb-341c-47c4-b906-0b769dc2e9c6">
 </samp>
+<h3>Missing Values/Null Values</h3>
+<pre>sns.heatmap(train_data.isnull(), cbar=False)</pre>
+<samp>
+  <img width="631" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/b48a4f7a-3dac-40ee-91d2-455cae1dd623">
+</samp>
+<pre>
+  missing = train_data.isnull().sum()
+missing = pd.DataFrame(missing[missing!=0])
+missing.columns = ['No. of missing values']
+missing['Percentage'] = 100*missing['No. of missing values']/train_data.id.count()
+missing.sort_values(by="Percentage", ascending=False)
+</pre>
+<samp>
+  <img width="744" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/80f7bf3d-45e4-4f52-af60-2fcfb9713772">
+</samp>
+<h3>Drop columns having incorrect dtype</h3>
+<pre>
+  train_data.select_dtypes(include=['object']).head()
+</pre>
+<samp>
+  <img width="921" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/43b20124-afb8-4d9c-b5d5-e1d03653c059">
+</samp>
+<pre>
+invalid = train_data.select_dtypes(include=['object']).columns
+train_data.drop(invalid, axis=1, inplace=True)
+</pre>
+<pre>
+test_data.drop(invalid, axis=1, inplace=True)
+t_id = test_data['id'].copy
+test_data.drop('id', axis=1, inplace = True)
+</pre>
+<h3>Describe Statistics</h3>
+<pre>train_data.describe()</pre>
+<samp>
+  <img width="891" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/b45fb32d-2cd2-464c-a6c7-e3c43f6a2814">
+</samp>
+<pre>test_data.describe()</pre>
+<samp>
+  <img width="891" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/015c27d7-68fb-4de4-975b-3b748eee3e11">
+</samp>
