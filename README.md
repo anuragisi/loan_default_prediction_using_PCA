@@ -19,7 +19,42 @@ In essence, the loan default dataset offers both practical relevance and intelle
 
 </div>
 <h3>Importing Libraries</h3>
-<samp>import numpy as np
+<pre>import numpy as np
 import pandas as pd
 import seaborn as sns
-import matplotlib.pyplot as plt</samp>
+import matplotlib.pyplot as plt</pre>
+
+<h3>Loading Dataset</h3>
+<pre>
+  train_data = pd.read_csv("/content/drive/MyDrive/Loan_Default/train_v2.csv")
+</pre>
+<samp><img width="1293" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/9edafd0a-075a-4b69-a9fd-ec3527a7ba01">
+</samp>
+
+<pre>
+  test_data = pd.read_csv("/content/drive/MyDrive/Loan_Default/test_v2.csv")
+</pre>
+<samp>
+  <img width="1205" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/e9cfbe9f-cfdf-4808-8338-5e8107e35c08">
+</samp>
+<h3>View DataFrame</h3>
+<h4>Train Data</h4>
+<pre>
+  train_data.head()
+</pre>
+<samp>
+  <img width="1143" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/3ae1c2d8-75b0-4f3a-8293-c9e8a6b475bf">
+</samp>
+<h3>Test Data</h3>
+<pre>test_data.head()</pre>
+<samp><img width="1183" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/205cd7e5-df9c-4e13-8446-bb66849c7775">
+</samp>
+<h3>Data Information</h3>
+<pre>train_data.info()</pre>
+<samp>
+  <img width="422" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/bf6d9c7b-adc9-46f8-93a7-0e7d38a3bbc0">
+</samp>
+<pre>test_data.info()</pre>
+<samp>
+  <img width="507" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/1ff46dbb-341c-47c4-b906-0b769dc2e9c6">
+</samp>
