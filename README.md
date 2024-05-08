@@ -4,7 +4,7 @@ Hi everyone, I'm Anurag from the Indian Statistical Institute. Today, I'll be wa
 
 [![Now in Android: 55]
 (https://i.ytimg.com/vi/Hc79sDi3f0U/maxresdefault.jpg)] 
-(https://www.youtube.com/watch?v=gjHHIFlU2E8 "Now in Android: 55")    
+([https://www.youtube.com/watch?v=gjHHIFlU2E8] "Now in Android: 55")    
 
 <h3>Aim:</h3>
 <div>The competition aimed to predict whether a loan would default and the potential loss if it did. Unlike traditional methods that categorize borrowers as good or bad, this competition sought to anticipate both the default likelihood and the severity of losses. Essentially, it aimed to bridge traditional banking methods with asset management strategies.</div>
