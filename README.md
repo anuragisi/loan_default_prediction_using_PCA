@@ -5,6 +5,9 @@ Hi everyone, I'm Anurag from the Indian Statistical Institute. Today, I'll be wa
 Video Tutorial:  
 [<img width="660" alt="Screenshot 2024-05-08 at 3 42 27 PM" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/075d6d83-f523-4533-98c7-99a4c43f404c">](https://www.youtube.com/watch?v=gjHHIFlU2E8 "Play on YouTube")
 
+Link for the Kaggle Competition: www.kaggle.com/competitions/loan-default-prediction
+Link for the Kaggle Notebook: www.kaggle.com/code/rajvidoshi/loan-default-prediction-with-pca/notebook
+
 <h3>Aim:</h3>
 <div>The competition aimed to predict whether a loan would default and the potential loss if it did. Unlike traditional methods that categorize borrowers as good or bad, this competition sought to anticipate both the default likelihood and the severity of losses. Essentially, it aimed to bridge traditional banking methods with asset management strategies.</div>
 
