@@ -159,6 +159,7 @@ X_test = scalar.transform(X_test)
   X_t = scalar.transform(test_data)
 </pre>
 <h3>PCA</h3>
+<h4>Read more about PCA (scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html) (sebastianraschka.com/Articles/2015_pca_in_3_steps.html) (www.kdnuggets.com/2023/05/principal-component-analysis-pca-scikitlearn.html)</h4>
 <pre>
 from sklearn.decomposition import PCA
 pca = PCA()
@@ -194,3 +195,129 @@ plt.ylabel('cumulative explained variance');
   <img width="387" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/63f7bcf9-093b-4ca7-9d01-8b91382296cb">
 </samp>
 <pre>np.cumsum(pca.explained_variance_ratio_)[200]</pre>
+<samp>
+  0.9827484142421781
+</samp>
+<h4>
+98.27% of variation is explained by 100 components.
+</h4>
+<pre>
+final_pca = PCA(n_components=200)
+final_pca.fit(X_train)
+X_train = final_pca.transform(X_train)
+X_train = pd.DataFrame(data = X_train)
+X_test = final_pca.transform(X_test)
+X_test = pd.DataFrame(data = X_test)
+X_t = final_pca.transform(X_t)
+X_t = pd.DataFrame(data = X_t)
+</pre>
+<h4>Now we can use these variables to fit the model with 200 independent variables to predict loss.</h4>
+<h3>Logistic Regression</h3>
+<pre>
+from sklearn.linear_model import LogisticRegression
+model = LogisticRegression(solver= 'saga', class_weight='balanced',max_iter=500, random_state=1).fit(X_train, y_train)
+model.coef_[0]
+</pre>
+<samp>
+  <img width="423" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/a2d54ddb-ca33-4504-9371-e213a205b1fe">
+</samp>
+<h3>Validation on test data</h3>
+<pre>
+ y_pred = model.predict(X_test)
+ y_pred
+</pre>
+<samp>
+  <img width="273" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/f88b6d44-ba8f-4db9-907e-fef26a22d046">
+</samp>
+<h3>
+ Model Evaluation 
+</h3>
+<h4>Confusion Matrix</h4>
+<pre>
+  import sklearn.metrics as sm
+c = pd.DataFrame(sm.confusion_matrix(y_test, y_pred), index=['Actual non defaulter','Actual defaulter'])
+c.columns = ['Predicted non defaulter','Predicted defaulter']
+c['Actual Total'] = c.sum(axis=1)
+c.loc['Predicted Total',:] = c.sum(axis = 0)
+c
+</pre>
+<samp>
+  <img width="495" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/ece60e65-55f4-4504-b416-46a50f07e297">
+</samp>
+<h4>The below confusion matrix is generated using (onlineconfusionmatrix.com) </h4>
+<samp>
+  <img width="691" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/e6ce2cc7-f2e8-4c43-8c84-dc7395cb78ed">
+
+</samp>
+<h3>Accuracy</h3>
+<pre>
+  print(["The accuracy on the validation data is " + str(round(sm.accuracy_score(y_test, y_pred)*100,ndigits = 2)) + "%"])
+</pre>
+<samp>['The accuracy on the validation data is 64.36%']</samp>
+<h3>
+  Sensitivity
+</h3>
+<pre>
+print("The sensitivity (true positive rate) is " + str(round(100*c.iloc[1,1]/c.iloc[1,2], ndigits=2)) + "%")
+</pre>
+<samp>
+  The sensitivity (true positive rate) is 68.93%
+</samp>
+<h3>
+  AUC
+</h3>
+<pre>
+ns_fpr, ns_tpr, _ = sm.roc_curve(y_test, np.zeros(len(y_test)))
+lr_probs = model.predict_proba(X_test)
+# keep probabilities for the positive outcome only
+lr_probs = lr_probs[:, 1]
+lr_fpr, lr_tpr, _ = sm.roc_curve(y_test, lr_probs)
+# plot the roc curve for the model
+plt.plot(ns_fpr, ns_tpr, linestyle='--', label='No Skill')
+plt.plot(lr_fpr, lr_tpr, marker='.', label='Logistic Regression')
+# axis labels
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+# show the legend
+plt.legend()
+# show the plot
+plt.show()
+</pre>
+<samp>
+  <img width="387" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/2fb0c58d-917b-40f7-95db-ea37ffad1144">
+</samp>
+<pre>
+print("The Area under ROC curve is " + str(round(100 * sm.roc_auc_score(y_test, y_pred), ndigits=2)) + "%")
+</pre>
+<samp>
+  The Area under ROC curve is 66.41%
+</samp>
+<h3>Read more about AUC and ROC Curve (developers.google.com/machine-learning/crash-course/classification/roc-and-auc)
+<h3>
+  Classification Report
+</h3>
+<pre>print(sm.classification_report(y_test, y_pred))</pre>
+<samp>
+  <img width="458" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/3f41fde7-c0ca-4ded-8271-a942050af2c0">
+</samp>
+<h3>Prediction on given test data</h3>
+<pre>
+pred = model.predict(X_t)
+sns.countplot(pred);
+</pre>
+<samp>
+  <img width="407" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/09d87b96-9c5b-4af1-a82f-9b0b491b48ad">
+</samp>
+<pre>
+submission = pd.read_csv("../input/loan-default-prediction/sampleSubmission.csv")
+submission['loss'] = pred
+</pre>
+<pre>
+  submission.head()
+</pre>
+<samp>
+  <img width="135" alt="image" src="https://github.com/anuragprasad95/loan_default_prediction_using_PCA/assets/3609255/e8193a86-e139-452e-9e23-a4021cd9644d">
+</samp>
+<pre>
+  submission.to_csv("submit.csv", index=False)
+</pre>
